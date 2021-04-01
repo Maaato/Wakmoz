@@ -2,6 +2,7 @@ import moment from "moment-timezone";
 
 const RUBILAX_TIME_ZONE: string = "Europe/London";
 export const EVENT_ANNIVERSARY: string = "2020-02-29"
+export const KROSMOZ_URI: string = "http://www.krosmoz.com/es/almanax";
 
 export const DATE_NOW = () =>  moment().tz(RUBILAX_TIME_ZONE).format("yyyy-MM-DD")
 export const DATE_NOW_MILI = () =>  new Date(DATE_NOW()).getTime();

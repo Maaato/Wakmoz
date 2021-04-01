@@ -1,4 +1,6 @@
-import { DATETIME_TOMORROW_MILI, EVENT_ANNIVERSARY } from "../utils/Constants";
+import scrapeIt from "scrape-it";
+
+import { DATETIME_TOMORROW_MILI, EVENT_ANNIVERSARY , KROSMOZ_URI , DATE_NOW} from "../utils/Constants";
 
 export class AlmanaxService {
   public getAlmanaxBonus(dateMili: number): string {
@@ -32,5 +34,17 @@ export class AlmanaxService {
     const minutes = Math.floor((diff / 1000 / 60) % 60);
     const seconds = Math.floor((diff / 1000) % 60);
     return { hours, minutes, seconds };
+  }
+  
+  public async scrapBonusInfo() : Promise<any> {
+    const scrapItOptions = {
+      avatar: { selector: "#almanax_boss_image img", attr: "src" },
+      blessing: { selector: ".wakfu .mid" },
+      day: { selector: "#almanax_day .day-number" },
+      dayAsText: { selector: "#almanax_day .day-text" },
+      season: { selector: "#almanax", attr: "class" },
+    };
+    const { data } = await scrapeIt(`${KROSMOZ_URI}/${DATE_NOW()}`, scrapItOptions)
+    return data;
   }
 }
