@@ -1,6 +1,8 @@
 import { Command } from "discord-akairo";
 import { Message } from "discord.js";
+
 import { AlmanaxService } from "../services/Almanax";
+import { Embed } from '../utils/Embed'
 import { DATETIME_NOW_MILI, DATE_NOW_MILI, DATE_TOMORROW_MILI } from "../utils/Constants";
 
 export default class BonusCommand extends Command {
@@ -8,7 +10,7 @@ export default class BonusCommand extends Command {
 
   constructor() {
     super("bonus", {
-      aliases: ["b"],
+      aliases: ["bonus","b"],
     });
     this.almanaxService = new AlmanaxService();
   }
@@ -18,7 +20,8 @@ export default class BonusCommand extends Command {
     const bonus = this.almanaxService.getAlmanaxBonus(DATE_NOW_MILI());
     const nextBonusIs = this.almanaxService.getAlmanaxBonus(DATE_TOMORROW_MILI());
     const nextBonusIn = this.almanaxService.getRemainingTimeToNextBonus(DATETIME_NOW_MILI())
-    console.log({bonusInfo},  {bonus} , {nextBonusIs}, {nextBonusIn})
-    return message.reply(`${bonus} | ${JSON.stringify(nextBonusIn)} | ${nextBonusIs}`);
+    const bonusData = { ...bonusInfo , bonus , nextBonusIs, nextBonusIn }
+    const bonusEmbed = bonus ? new Embed().MessageEmbed(bonusData) : new Embed().ErrorEmbed()
+    return message.reply(bonusEmbed);
   }
 }
