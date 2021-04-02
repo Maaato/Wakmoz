@@ -1,6 +1,13 @@
 import scrapeIt from "scrape-it";
+import { IBonusInfo } from "../interfaces/BonusInfo";
+import { INextBonusIn } from "../interfaces/NextBonusIn";
 
-import { DATETIME_TOMORROW_MILI, EVENT_ANNIVERSARY , KROSMOZ_URI , DATE_NOW} from "../utils/Constants";
+import {
+  DATETIME_TOMORROW_MILI,
+  EVENT_ANNIVERSARY,
+  KROSMOZ_URI,
+  DATE_NOW,
+} from "../utils/Constants";
 
 export class AlmanaxService {
   public getAlmanaxBonus(dateMili: number): string {
@@ -27,7 +34,7 @@ export class AlmanaxService {
     return bonus;
   }
 
-  public getRemainingTimeToNextBonus(nowInMili: number) {
+  public getRemainingTimeToNextBonus(nowInMili: number): INextBonusIn {
     const tomorrowInMii = DATETIME_TOMORROW_MILI();
     const diff = tomorrowInMii - nowInMili;
     const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
@@ -35,8 +42,8 @@ export class AlmanaxService {
     const seconds = Math.floor((diff / 1000) % 60);
     return { hours, minutes, seconds };
   }
-  
-  public async scrapBonusInfo() : Promise<any> {
+
+  public async scrapBonusInfo(): Promise<IBonusInfo> {
     const scrapItOptions = {
       avatar: { selector: "#almanax_boss_image img", attr: "src" },
       blessing: { selector: ".wakfu .mid" },
@@ -44,7 +51,10 @@ export class AlmanaxService {
       dayAsText: { selector: "#almanax_day .day-text" },
       season: { selector: "#almanax", attr: "class" },
     };
-    const { data } = await scrapeIt(`${KROSMOZ_URI}/${DATE_NOW()}`, scrapItOptions)
-    return data;
+    const { data } = await scrapeIt(
+      `${KROSMOZ_URI}/${DATE_NOW()}`,
+      scrapItOptions
+    );
+    return data as IBonusInfo;
   }
 }

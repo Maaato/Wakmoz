@@ -4,6 +4,7 @@ import { Message } from "discord.js";
 import { AlmanaxService } from "../services/Almanax";
 import { Embed } from '../utils/Embed'
 import { DATETIME_NOW_MILI, DATE_NOW_MILI, DATE_TOMORROW_MILI } from "../utils/Constants";
+import { IBonusInfo } from '../interfaces/BonusData'
 
 export default class BonusCommand extends Command {
   private almanaxService;
@@ -16,12 +17,12 @@ export default class BonusCommand extends Command {
   }
 
   public async exec(message: Message) {
-    const bonusInfo = await this.almanaxService.scrapBonusInfo();
+    const bonusInfo  = await this.almanaxService.scrapBonusInfo();
     const bonus = this.almanaxService.getAlmanaxBonus(DATE_NOW_MILI());
     const nextBonusIs = this.almanaxService.getAlmanaxBonus(DATE_TOMORROW_MILI());
     const nextBonusIn = this.almanaxService.getRemainingTimeToNextBonus(DATETIME_NOW_MILI())
-    const bonusData = { ...bonusInfo , bonus , nextBonusIs, nextBonusIn }
+    const bonusData : IBonusInfo = { ...bonusInfo , bonus , nextBonusIs, nextBonusIn }
     const bonusEmbed = bonus ? new Embed().MessageEmbed(bonusData) : new Embed().ErrorEmbed()
-    return message.reply(bonusEmbed);
+    return message.channel.send(bonusEmbed);
   }
 }

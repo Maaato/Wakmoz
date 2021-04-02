@@ -1,12 +1,14 @@
 import { MessageEmbed } from "discord.js";
+
 import {
   RANDOM_EMOJI,
   KROZMOZ_YEAR,
   UPPER_FIRST_LETTER,
 } from "../utils/Constants";
+import { IBonusInfo } from '../interfaces/BonusData'
 
 export class Embed {
-  public MessageEmbed(data: any): MessageEmbed {
+  public MessageEmbed(data: IBonusInfo): MessageEmbed {
     const { avatar, blessing, day, dayAsText, season } = data;
     const { bonus, nextBonusIs, nextBonusIn } = data;
     const { hours, minutes, seconds } = nextBonusIn;
