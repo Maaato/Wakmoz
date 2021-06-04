@@ -1,6 +1,6 @@
 import { INextBonusIn } from "./NextBonusIn";
 
-export interface IBonusInfo {
+export interface IBonusData {
   avatar: string;
   blessing: string;
   day: string;

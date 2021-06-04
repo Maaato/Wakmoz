@@ -1,6 +1,6 @@
 import moment from "moment-timezone";
 
-const RUBILAX_TIME_ZONE: string = "Europe/London";
+const RUBILAX_TIME_ZONE: string = `${process.env.RUBILAX_TIME_ZONE}`;
 const WEATHER_EMOJIS = ['⛅','🌧️','☀️','☁️','🌨️']
 export const EVENT_ANNIVERSARY: string = "2020-02-29"
 export const KROSMOZ_URI: string = "http://www.krosmoz.com/es/almanax";

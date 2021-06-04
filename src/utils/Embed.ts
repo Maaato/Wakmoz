@@ -4,13 +4,14 @@ import {
   RANDOM_EMOJI,
   KROZMOZ_YEAR,
   UPPER_FIRST_LETTER,
+  DATETIME_NOW
 } from "../utils/Constants";
-import { IBonusInfo } from '../interfaces/BonusData'
+import { IBonusData } from '../interfaces/BonusData'
 
 export class Embed {
-  public MessageEmbed(data: IBonusInfo): MessageEmbed {
-    const { avatar, blessing, day, dayAsText, season } = data;
-    const { bonus, nextBonusIs, nextBonusIn } = data;
+  public MessageEmbed(bonusData: IBonusData): MessageEmbed {
+    const { avatar, blessing, day, dayAsText, season } = bonusData;
+    const { bonus, nextBonusIs, nextBonusIn } = bonusData;
     const { hours, minutes, seconds } = nextBonusIn;
     return new MessageEmbed({
       color: 0x40b2b5,
@@ -24,7 +25,7 @@ export class Embed {
       },
       description: `**Season:** ${UPPER_FIRST_LETTER(
         season
-      )} \n**Bonus:** ${bonus} \n\n **Next Bonus:** ${nextBonusIs} \n**Next Bonus in:** ${hours}h ${minutes}m ${seconds}s`,
+      )} **Time:** ${DATETIME_NOW().split(' ')[1]} \n**Bonus:** ${bonus} \n\n **Next Bonus:** ${nextBonusIs} \n**Next Bonus in:** ${hours}h ${minutes}m ${seconds}s`,
     });
   }
 
