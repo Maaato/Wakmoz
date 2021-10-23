@@ -1,7 +1,7 @@
 {
   "name": "wakmoz",
   "version": "1.0.0",
-  "description": "Guardian, a purpose built anti-nuke Discord bot.",
+  "description": "Discord bot to get the current almanax bonus",
   "main": "index.js",
   "scripts": {
     "start:dev": "nodemon -e js,ts --watch src --exec \"npm run build && npm run start\"",
@@ -11,9 +11,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/plexidev/discord-bot-template.git"
+    "url": "https://github.com/Maaato/Wakmoz.git"
   },
-  "author": "",
+  "author": "Maaato",
   "license": "MIT",
   "dependencies": {
     "discord-akairo": "^8.1.0",
