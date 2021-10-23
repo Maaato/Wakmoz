@@ -5,7 +5,6 @@ import { DATETIME_NOW_MILI, DATE_NOW_MILI } from "../utils/Constants";
 import { Logger } from "../utils/Logger";
 
 export default class ReadyListener extends Listener {
-  
   private readonly almanaxService;
 
   constructor() {
@@ -21,6 +20,7 @@ export default class ReadyListener extends Listener {
     const { diff } = this.almanaxService.getRemainingTimeToNextBonus(
       DATETIME_NOW_MILI()
     );
+    Logger.info(`Timeout in ${diff} ms`, "Listener");
     setTimeout(async () => {
       Logger.info(`Timeout Started`, "Listener");
       const dayMillseconds = 1000 * 60 * 60 * 24;
