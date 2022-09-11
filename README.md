@@ -6,7 +6,7 @@
 
 - [Discord.js](https://discord.js.org/#/)
 - [Discord-Akairo](https://discord-akairo.github.io/#/)
-- [scrape-it](https://www.npmjs.com/package/scrape-it)
+- [Scrape-it](https://github.com/IonicaBizau/scrape-it)
 
 ## Installation 🔧
 
