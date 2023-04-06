@@ -1,6 +1,18 @@
 # Wakmoz
 
- Wakmoz is a Discord bot for give the Wakfu almanax daily bonus.
+A Discord Bot to annoncing the daily bonus of the [Wakfu almanax](https://www.krosmoz.com/es/almanax).
+
+---
+📌 **[Deprecation Notice]**
+
+The Wakfu development team has announced that they want to remove the almanax bonuses from the next update,
+
+due to this, the bot will be closed as it will stop working.
+
+thank u all <3
+
+- Learn more: [UPDATE 1.79 (April 04, 2023)](https://www.wakfu.com/en/mmorpg/news/patch-notes/1576005-update-1-79/details)
+---
 
 ## Built With :wrench:
 
